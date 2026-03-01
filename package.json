@@ -1,0 +1,9 @@
+{
+  "name": "ext-options-manager",
+  "version": "1.0.0",
+  "description": "Manage Chrome extension options page with built-in form builder",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "keywords": ["chrome-extension", "options", "settings", "form"],
+  "license": "MIT"
+}
