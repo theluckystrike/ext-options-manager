@@ -101,20 +101,28 @@ export class OptionsManager {
    */
   async init(formId: string = 'options-form'): Promise<void> {
     this.form = document.getElementById(formId) as HTMLFormElement;
-    if (!this.form) return;
+    if (!this.form) {
+      console.error(`Options form with id "${formId}" not found. Make sure the form element exists in the DOM.`);
+      return;
+    }
     
     // Load saved values
-    const saved = await this.load();
-    Object.entries(saved).forEach(([key, value]) => {
-      const input = this.form?.querySelector(`[name="${key}"]`) as HTMLInputElement;
-      if (input) {
-        if (input.type === 'checkbox') {
-          input.checked = Boolean(value);
-        } else {
-          input.value = String(value);
+    try {
+      const saved = await this.load();
+      Object.entries(saved).forEach(([key, value]) => {
+        const input = this.form?.querySelector(`[name="${key}"]`) as HTMLInputElement;
+        if (input) {
+          if (input.type === 'checkbox') {
+            input.checked = Boolean(value);
+          } else {
+            input.value = String(value);
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.error('Failed to load saved options:', error);
+      alert(`Failed to load options: ${error instanceof Error ? error.message : 'Unknown error'}. Using default values.`);
+    }
     
     // Save on submit
     this.form.addEventListener('submit', async (e) => {
@@ -125,30 +133,50 @@ export class OptionsManager {
         const input = this.form?.querySelector(`[name="${key}"]`) as HTMLInputElement;
         values[key] = input?.type === 'checkbox' ? input.checked : value;
       });
-      await this.save(values);
-      this.config.onChange?.(values);
+      try {
+        await this.save(values);
+        this.config.onChange?.(values);
+      } catch (error) {
+        console.error('Failed to save options:', error);
+        alert(`Failed to save options: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      }
     });
     
     // Reset button
     document.getElementById('reset-btn')?.addEventListener('click', async () => {
-      const defaults: Record<string, any> = {};
-      this.config.fields.forEach(f => defaults[f.id] = f.defaultValue);
-      await this.save(defaults);
-      location.reload();
+      try {
+        const defaults: Record<string, any> = {};
+        this.config.fields.forEach(f => defaults[f.id] = f.defaultValue);
+        await this.save(defaults);
+        location.reload();
+      } catch (error) {
+        console.error('Failed to reset options:', error);
+        alert(`Failed to reset options: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      }
     });
   }
 
   async load(): Promise<Record<string, any>> {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       chrome.storage.sync.get(this.config.storageKey, result => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(`Storage read failed: ${chrome.runtime.lastError.message}`));
+          return;
+        }
         resolve(result[this.config.storageKey] || {});
       });
     });
   }
 
   async save(values: Record<string, any>): Promise<void> {
-    return new Promise(resolve => {
-      chrome.storage.sync.set({ [this.config.storageKey]: values }, resolve);
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.set({ [this.config.storageKey]: values }, () => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(`Storage write failed: ${chrome.runtime.lastError.message}`));
+          return;
+        }
+        resolve();
+      });
     });
   }
 }
