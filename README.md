@@ -77,8 +77,7 @@ options.init();
 const options = new OptionsManager({
   storageKey: 'settings',
   fields: [...],
-  theme: 'dark',
-  onSave: (values) => {
+  onChange: (values) => {
     console.log('Settings saved:', values);
   }
 });
@@ -103,12 +102,10 @@ const options = new OptionsManager({
 
 | Method | Description |
 |--------|-------------|
-| `renderForm()` | Render the form HTML |
-| `init()` | Initialize form handlers |
-| `getValues()` | Get current form values |
-| `setValues(values)` | Set form values |
-| `reset()` | Reset to defaults |
-| `validate()` | Validate form |
+| `renderForm()` | Generate and return HTML for the options form |
+| `init(formId?)` | Initialize form handlers and load saved values (formId defaults to 'options-form') |
+| `load()` | Load settings from chrome.storage.sync (returns Promise) |
+| `save(values)` | Save settings to chrome.storage.sync |
 
 ## Related Packages
 
