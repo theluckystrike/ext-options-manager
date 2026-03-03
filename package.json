@@ -5,5 +5,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "keywords": ["chrome-extension", "options", "settings", "form"],
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "echo 'No tests specified' && exit 0",
+    "build": "echo 'No build required'"
+  }
 }
