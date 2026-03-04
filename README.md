@@ -1,8 +1,15 @@
 # ext-options-manager
 
+[![npm version](https://img.shields.io/npm/v/ext-options-manager)](https://npmjs.com/package/ext-options-manager)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![Discord](https://img.shields.io/badge/Discord-Zovo-blueviolet.svg?logo=discord)](https://discord.gg/zovo)
+[![Website](https://img.shields.io/badge/Website-zovo.one-blue)](https://zovo.one)
+[![GitHub Stars](https://img.shields.io/github/stars/theluckystrike/ext-options-manager?style=social)](https://github.com/theluckystrike/ext-options-manager)
+
 > Build Chrome extension options pages from a schema -- form generation, validation, and chrome.storage sync included.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+Part of the [Zovo](https://zovo.one) developer tools family.
 
 ## Install
 
@@ -99,3 +106,23 @@ The generated form includes a **Save** button and a **Reset to Defaults** button
 ## License
 
 MIT
+
+## See Also
+
+- [webext-options-page](https://github.com/theluckystrike/webext-options-page) - Pre-built options page template
+- [chrome-storage-plus](https://github.com/theluckystrike/chrome-storage-plus) - Type-safe storage wrapper
+- [ext-popup-framework](https://github.com/theluckystrike/ext-popup-framework) - Popup UI framework for browser extensions
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+Built by [Zovo](https://zovo.one)
