@@ -109,11 +109,19 @@ MIT
 
 ## See Also
 
+### Related Zovo Repositories
+
 - [webext-options-page](https://github.com/theluckystrike/webext-options-page) - Pre-built options page template
 - [chrome-storage-plus](https://github.com/theluckystrike/chrome-storage-plus) - Type-safe storage wrapper
 - [ext-popup-framework](https://github.com/theluckystrike/ext-popup-framework) - Popup UI framework for browser extensions
+- [chrome-extension-starter-mv3](https://github.com/theluckystrike/chrome-extension-starter-mv3) - Production-ready Chrome extension starter
 
-## Contributing
+### Zovo Chrome Extensions
+
+- [Zovo Tab Manager](https://chrome.google.com/webstore/detail/zovo-tab-manager) - Manage tabs efficiently
+- [Zovo Focus](https://chrome.google.com/webstore/detail/zovo-focus) - Block distractions
+
+Visit [zovo.one](https://zovo.one) for more information.
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
